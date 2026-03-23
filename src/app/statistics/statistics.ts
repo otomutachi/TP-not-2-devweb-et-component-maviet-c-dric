@@ -1,11 +1,12 @@
 import { Component, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../services/user.service';
+import { UserCardComponent } from '../user-card/user-card';
 
 @Component({
   selector: 'app-statistics',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, UserCardComponent],
   templateUrl: './statistics.html',
   styleUrl: './statistics.css'
 })
@@ -20,6 +21,8 @@ export class StatisticsComponent {
   windowsUsers = computed(() => this.users().filter(u => u.os === 'Windows').length);
   macosUsers = computed(() => this.users().filter(u => u.os === 'MacOS').length);
   linuxUsers = computed(() => this.users().filter(u => u.os === 'Linux').length);
+
+  favoriteUsers = computed(() => this.users().filter(u => u.isFavorite));
 
   averageAge = computed(() => {
     const users = this.users();
@@ -37,4 +40,8 @@ export class StatisticsComponent {
     const users = this.users();
     return users.length > 0 ? users.reduce((youngest, u) => u.age < youngest.age ? u : youngest) : null;
   });
+
+  onFavoriteToggled(userId: number) {
+    this.userService.toggleFavorite(userId);
+  }
 }

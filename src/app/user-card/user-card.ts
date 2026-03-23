@@ -1,11 +1,12 @@
 import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { User } from '../models/user.model';
+import { FavoriteButtonComponent } from '../favorite-button/favorite-button';
 
 @Component({
   selector: 'app-user-card',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FavoriteButtonComponent],
   templateUrl: './user-card.html',
   styleUrl: './user-card.css'
 })
@@ -15,6 +16,7 @@ export class UserCardComponent {
   
   presenceToggled = output<number>();
   presenterSelected = output<User>();
+  favoriteToggled = output<number>();
 
   togglePresence() {
     this.presenceToggled.emit(this.user().id);
@@ -22,5 +24,9 @@ export class UserCardComponent {
 
   setPresentationUser() {
     this.presenterSelected.emit(this.user());
+  }
+
+  toggleFavorite() {
+    this.favoriteToggled.emit(this.user().id);
   }
 }

@@ -7,4 +7,5 @@ export interface User {
   age: number;
   os: OS;
   isPresent: boolean;
+  isFavorite: boolean;
 }

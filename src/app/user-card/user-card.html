@@ -1,20 +1,24 @@
-<div class="user-card">
-  <div class="user-info">
-    <h3>{{ user().firstName }} {{ user().lastName }}</h3>
-    <p><strong>Âge:</strong> {{ user().age }} ans</p>
-    <p><strong>OS:</strong> {{ user().os }}</p>
+<div class="user-card" [class.favorite]="user().isFavorite">
+  <div class="header">
+    <div>
+      <h3>{{ user().firstName }} {{ user().lastName }}</h3>
+      <p>{{ user().age }} ans • {{ user().os }}</p>
+    </div>
+    <app-favorite-button 
+      *ngIf="showButtons()"
+      [isFavorite]="user().isFavorite"
+      (favoriteToggled)="toggleFavorite()">
+    </app-favorite-button>
   </div>
 
-  <div class="user-status" [ngClass]="{ present: user().isPresent, absent: !user().isPresent }">
-    {{ user().isPresent ? 'Présent' : 'Absent' }}
+  <div class="status" [ngClass]="{ present: user().isPresent }">
+    {{ user().isPresent ? '✓ Présent' : '✗ Absent' }}
   </div>
 
-  <div class="buttons" *ngIf="showButtons()">
-    <button class="btn btn-presence" (click)="togglePresence()">
-      {{ user().isPresent ? 'Marquer absent' : 'Marquer présent' }}
+  <div class="actions" *ngIf="showButtons()">
+    <button (click)="togglePresence()" [class.active]="user().isPresent">
+      {{ user().isPresent ? 'Absent' : 'Présent' }}
     </button>
-    <button class="btn btn-presenter" (click)="setPresentationUser()">
-      Présentateur.rice
-    </button>
+    <button (click)="setPresentationUser()">Présentateur</button>
   </div>
 </div>

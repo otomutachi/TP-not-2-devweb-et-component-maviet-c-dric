@@ -1,5 +1,5 @@
 <div class="statistics-container">
-  <h2>Statistiques</h2>
+  <h2>📊 Statistiques</h2>
   
   <div class="stats-grid">
     <div class="stat-card">
@@ -10,25 +10,27 @@
     <div class="stat-card present">
       <h3>Présents</h3>
       <p class="stat-value">{{ presentUsers() }}</p>
+      <p class="stat-percentage">{{ presentUsers() > 0 ? Math.round((presentUsers() / totalUsers()) * 100) : 0 }}%</p>
     </div>
 
     <div class="stat-card absent">
       <h3>Absents</h3>
       <p class="stat-value">{{ absentUsers() }}</p>
+      <p class="stat-percentage">{{ absentUsers() > 0 ? Math.round((absentUsers() / totalUsers()) * 100) : 0 }}%</p>
     </div>
 
     <div class="stat-card windows">
-      <h3>Windows</h3>
+      <h3>💻 Windows</h3>
       <p class="stat-value">{{ windowsUsers() }}</p>
     </div>
 
     <div class="stat-card macos">
-      <h3>MacOS</h3>
+      <h3>🍎 MacOS</h3>
       <p class="stat-value">{{ macosUsers() }}</p>
     </div>
 
     <div class="stat-card linux">
-      <h3>Linux</h3>
+      <h3>🐧 Linux</h3>
       <p class="stat-value">{{ linuxUsers() }}</p>
     </div>
 
@@ -38,13 +40,38 @@
     </div>
 
     <div class="stat-card" *ngIf="oldestUser()">
-      <h3>Plus âgé</h3>
-      <p class="stat-value">{{ oldestUser()!.firstName }} ({{ oldestUser()!.age }})</p>
+      <h3>👴 Plus âgé</h3>
+      <p class="stat-value">{{ oldestUser()!.firstName }}</p>
+      <p class="stat-subtext">{{ oldestUser()!.age }} ans</p>
     </div>
 
     <div class="stat-card" *ngIf="youngestUser()">
-      <h3>Plus jeune</h3>
-      <p class="stat-value">{{ youngestUser()!.firstName }} ({{ youngestUser()!.age }})</p>
+      <h3>👶 Plus jeune</h3>
+      <p class="stat-value">{{ youngestUser()!.firstName }}</p>
+      <p class="stat-subtext">{{ youngestUser()!.age }} ans</p>
     </div>
+
+    <div class="stat-card favorite">
+      <h3>⭐ Favoris</h3>
+      <p class="stat-value">{{ favoriteUsers().length }}</p>
+    </div>
+  </div>
+
+  <!-- Section Étudiants Favoris -->
+  <div class="favorites-section" *ngIf="favoriteUsers().length > 0">
+    <h3>⭐ Étudiants Favoris</h3>
+    <div class="favorites-list">
+      @for (user of favoriteUsers(); track user.id) {
+        <app-user-card
+          [user]="user"
+          [showButtons]="false"
+          (favoriteToggled)="onFavoriteToggled($event)">
+        </app-user-card>
+      }
+    </div>
+  </div>
+
+  <div class="empty-favorites" *ngIf="favoriteUsers().length === 0">
+    <p>Aucun étudiant marqué comme favori</p>
   </div>
 </div>

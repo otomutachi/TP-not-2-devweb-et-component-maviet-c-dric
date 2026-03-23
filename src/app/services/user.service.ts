@@ -6,12 +6,12 @@ import { User } from '../models/user.model';
 })
 export class UserService {
   private readonly users = signal<User[]>([
-    { id: 1, firstName: 'Jean', lastName: 'Dupont', age: 22, os: 'Windows', isPresent: false },
-    { id: 2, firstName: 'Marie', lastName: 'Martin', age: 21, os: 'MacOS', isPresent: false },
-    { id: 3, firstName: 'Pierre', lastName: 'Bernard', age: 23, os: 'Linux', isPresent: false },
-    { id: 4, firstName: 'Sophie', lastName: 'Lefevre', age: 20, os: 'Windows', isPresent: false },
-    { id: 5, firstName: 'Luc', lastName: 'Moreau', age: 24, os: 'MacOS', isPresent: false },
-    { id: 6, firstName: 'Anne', lastName: 'Dubois', age: 22, os: 'Linux', isPresent: false },
+    { id: 1, firstName: 'Jean', lastName: 'Dupont', age: 22, os: 'Windows', isPresent: false, isFavorite: false },
+    { id: 2, firstName: 'Marie', lastName: 'Martin', age: 21, os: 'MacOS', isPresent: false, isFavorite: false },
+    { id: 3, firstName: 'Pierre', lastName: 'Bernard', age: 23, os: 'Linux', isPresent: false, isFavorite: false },
+    { id: 4, firstName: 'Sophie', lastName: 'Lefevre', age: 20, os: 'Windows', isPresent: false, isFavorite: false },
+    { id: 5, firstName: 'Luc', lastName: 'Moreau', age: 24, os: 'MacOS', isPresent: false, isFavorite: false },
+    { id: 6, firstName: 'Anne', lastName: 'Dubois', age: 22, os: 'Linux', isPresent: false, isFavorite: false },
   ]);
 
   private readonly presenter = signal<User | null>(null);
@@ -31,6 +31,23 @@ export class UserService {
       user.isPresent = !user.isPresent;
       this.users.set([...users]);
     }
+  }
+
+  toggleFavorite(userId: number) {
+    const users = this.users();
+    const user = users.find(u => u.id === userId);
+    if (user) {
+      user.isFavorite = !user.isFavorite;
+      this.users.set([...users]);
+    }
+  }
+
+  getPresentUsers() {
+    return this.users().filter(u => u.isPresent);
+  }
+
+  getFavoriteUsers() {
+    return this.users().filter(u => u.isFavorite);
   }
 
   setPresentationUser(user: User | null) {
