@@ -1,0 +1,50 @@
+<div class="statistics-container">
+  <h2>Statistiques</h2>
+  
+  <div class="stats-grid">
+    <div class="stat-card">
+      <h3>Total d'utilisateurs</h3>
+      <p class="stat-value">{{ totalUsers() }}</p>
+    </div>
+
+    <div class="stat-card present">
+      <h3>Présents</h3>
+      <p class="stat-value">{{ presentUsers() }}</p>
+    </div>
+
+    <div class="stat-card absent">
+      <h3>Absents</h3>
+      <p class="stat-value">{{ absentUsers() }}</p>
+    </div>
+
+    <div class="stat-card windows">
+      <h3>Windows</h3>
+      <p class="stat-value">{{ windowsUsers() }}</p>
+    </div>
+
+    <div class="stat-card macos">
+      <h3>MacOS</h3>
+      <p class="stat-value">{{ macosUsers() }}</p>
+    </div>
+
+    <div class="stat-card linux">
+      <h3>Linux</h3>
+      <p class="stat-value">{{ linuxUsers() }}</p>
+    </div>
+
+    <div class="stat-card">
+      <h3>Moyenne d'âge</h3>
+      <p class="stat-value">{{ averageAge() }} ans</p>
+    </div>
+
+    <div class="stat-card" *ngIf="oldestUser()">
+      <h3>Plus âgé</h3>
+      <p class="stat-value">{{ oldestUser()!.firstName }} ({{ oldestUser()!.age }})</p>
+    </div>
+
+    <div class="stat-card" *ngIf="youngestUser()">
+      <h3>Plus jeune</h3>
+      <p class="stat-value">{{ youngestUser()!.firstName }} ({{ youngestUser()!.age }})</p>
+    </div>
+  </div>
+</div>

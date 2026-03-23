@@ -1,0 +1,20 @@
+<div class="user-card">
+  <div class="user-info">
+    <h3>{{ user().firstName }} {{ user().lastName }}</h3>
+    <p><strong>Âge:</strong> {{ user().age }} ans</p>
+    <p><strong>OS:</strong> {{ user().os }}</p>
+  </div>
+
+  <div class="user-status" [ngClass]="{ present: user().isPresent, absent: !user().isPresent }">
+    {{ user().isPresent ? 'Présent' : 'Absent' }}
+  </div>
+
+  <div class="buttons" *ngIf="showButtons()">
+    <button class="btn btn-presence" (click)="togglePresence()">
+      {{ user().isPresent ? 'Marquer absent' : 'Marquer présent' }}
+    </button>
+    <button class="btn btn-presenter" (click)="setPresentationUser()">
+      Présentateur.rice
+    </button>
+  </div>
+</div>

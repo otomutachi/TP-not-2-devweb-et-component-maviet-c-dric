@@ -1,0 +1,59 @@
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.app-header h1 {
+  margin: 0 0 10px 0;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.app-header p {
+  margin: 0;
+  font-size: 16px;
+  opacity: 0.95;
+}
+
+.users-section {
+  margin-top: 40px;
+}
+
+.users-section h2 {
+  color: #333;
+  font-size: 28px;
+  margin: 0 0 24px 0;
+  border-bottom: 3px solid #007bff;
+  padding-bottom: 12px;
+}
+
+.users-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .app-header h1 {
+    font-size: 28px;
+  }
+
+  .app-header p {
+    font-size: 14px;
+  }
+
+  .users-list {
+    grid-template-columns: 1fr;
+  }
+}

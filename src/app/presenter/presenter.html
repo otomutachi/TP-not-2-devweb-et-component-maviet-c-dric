@@ -1,0 +1,32 @@
+<div class="presenter-container" *ngIf="presenter()">
+  <div class="presenter-overlay">
+    <div class="presenter-card">
+      <button class="close-btn" (click)="clearPresenter()">✖</button>
+      
+      <div class="presenter-content">
+        <h1>{{ presenter()!.firstName }} {{ presenter()!.lastName }}</h1>
+        
+        <div class="presenter-details">
+          <div class="detail-item">
+            <span class="label">Âge:</span>
+            <span class="value">{{ presenter()!.age }} ans</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Système d'exploitation:</span>
+            <span class="value">{{ presenter()!.os }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Statut:</span>
+            <span class="value" [ngClass]="{ present: presenter()!.isPresent, absent: !presenter()!.isPresent }">
+              {{ presenter()!.isPresent ? '✓ Présent' : '✗ Absent' }}
+            </span>
+          </div>
+        </div>
+
+        <div class="presenter-message">
+          <p>Cet utilisateur partage actuellement son écran</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
