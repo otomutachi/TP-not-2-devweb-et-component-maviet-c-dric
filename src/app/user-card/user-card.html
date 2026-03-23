@@ -1,14 +1,7 @@
-<div class="user-card" [class.favorite]="user().isFavorite">
+<div class="user-card">
   <div class="header">
-    <div>
-      <h3>{{ user().firstName }} {{ user().lastName }}</h3>
-      <p>{{ user().age }} ans • {{ user().os }}</p>
-    </div>
-    <app-favorite-button 
-      *ngIf="showButtons()"
-      [isFavorite]="user().isFavorite"
-      (favoriteToggled)="toggleFavorite()">
-    </app-favorite-button>
+    <h3>{{ user().firstName }} {{ user().lastName }}</h3>
+    <p>{{ user().age }} ans • {{ user().os }}</p>
   </div>
 
   <div class="status" [ngClass]="{ present: user().isPresent }">

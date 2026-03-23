@@ -50,28 +50,5 @@
       <p class="stat-value">{{ youngestUser()!.firstName }}</p>
       <p class="stat-subtext">{{ youngestUser()!.age }} ans</p>
     </div>
-
-    <div class="stat-card favorite">
-      <h3>⭐ Favoris</h3>
-      <p class="stat-value">{{ favoriteUsers().length }}</p>
-    </div>
-  </div>
-
-  <!-- Section Étudiants Favoris -->
-  <div class="favorites-section" *ngIf="favoriteUsers().length > 0">
-    <h3>⭐ Étudiants Favoris</h3>
-    <div class="favorites-list">
-      @for (user of favoriteUsers(); track user.id) {
-        <app-user-card
-          [user]="user"
-          [showButtons]="false"
-          (favoriteToggled)="onFavoriteToggled($event)">
-        </app-user-card>
-      }
-    </div>
-  </div>
-
-  <div class="empty-favorites" *ngIf="favoriteUsers().length === 0">
-    <p>Aucun étudiant marqué comme favori</p>
   </div>
 </div>
