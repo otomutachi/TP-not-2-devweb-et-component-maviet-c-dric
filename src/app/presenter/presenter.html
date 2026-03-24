@@ -18,7 +18,7 @@
           <div class="detail-item">
             <span class="label">Statut:</span>
             <span class="value" [ngClass]="{ present: presenter()!.isPresent, absent: !presenter()!.isPresent }">
-              {{ presenter()!.isPresent ? '✓ Présent' : '✗ Absent' }}
+              {{ presenter()!.isPresent ? 'V Présent' : 'X Absent' }}
             </span>
           </div>
         </div>
