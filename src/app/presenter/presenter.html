@@ -1,7 +1,7 @@
 <div class="presenter-container" *ngIf="presenter()">
   <div class="presenter-overlay">
     <div class="presenter-card">
-      <button class="close-btn" (click)="clearPresenter()">✖</button>
+      <button class="close-btn" (click)="clearPresenter()">X</button>
       
       <div class="presenter-content">
         <h1>{{ presenter()!.firstName }} {{ presenter()!.lastName }}</h1>

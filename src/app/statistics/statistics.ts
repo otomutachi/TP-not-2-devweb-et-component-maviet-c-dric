@@ -1,6 +1,6 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, input, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserService } from '../services/user.service';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-statistics',
@@ -10,8 +10,7 @@ import { UserService } from '../services/user.service';
   styleUrl: './statistics.css'
 })
 export class StatisticsComponent {
-  private userService = inject(UserService);
-  users = this.userService.getUsers();
+  users = input.required<User[]>();
   Math = Math;
 
   totalUsers = computed(() => this.users().length);

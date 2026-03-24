@@ -1,11 +1,11 @@
 <div class="user-card">
   <div class="header">
     <h3>{{ user().firstName }} {{ user().lastName }}</h3>
-    <p>{{ user().age }} ans • {{ user().os }}</p>
+    <p>{{ user().age }} ans  {{ user().os }}</p>
   </div>
 
   <div class="status" [ngClass]="{ present: user().isPresent }">
-    {{ user().isPresent ? '✓ Présent' : '✗ Absent' }}
+    {{ user().isPresent ? 'Présent' : 'Absent' }}
   </div>
 
   <div class="actions" *ngIf="showButtons()">

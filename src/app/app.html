@@ -1,12 +1,15 @@
 <div class="app-container">
   <header class="app-header">
-    <h1>👨‍🏫 Dashboard Formateur</h1>
+    <h1>Dashboard Formateur</h1>
     <p>Gestion de la présence des étudiants en distanciel</p>
   </header>
 
-  <app-presenter></app-presenter>
+  <app-presenter 
+    [presenter]="presenter$()"
+    (closed)="onPresenterClosed()"
+  ></app-presenter>
 
-  <app-statistics></app-statistics>
+  <app-statistics [users]="users$()"></app-statistics>
 
   <div class="users-section">
     <h2>Liste des étudiants</h2>

@@ -13,7 +13,7 @@ import { UserService } from './services/user.service';
   styleUrl: './app.css'
 })
 export class App {
-  private userService = inject(UserService);
+  userService = inject(UserService);
   
   users$ = this.userService.getUsers();
   presenter$ = this.userService.getPresenter();
@@ -24,5 +24,9 @@ export class App {
 
   onPresenterSelected(user: any) {
     this.userService.setPresentationUser(user);
+  }
+
+  onPresenterClosed() {
+    this.userService.setPresentationUser(null);
   }
 }

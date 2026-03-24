@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserService } from '../services/user.service';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-presenter',
@@ -10,10 +10,10 @@ import { UserService } from '../services/user.service';
   styleUrl: './presenter.css'
 })
 export class PresenterComponent {
-  private userService = inject(UserService);
-  presenter = this.userService.getPresenter();
+  presenter = input<User | null>(null);
+  closed = output<void>();
 
   clearPresenter() {
-    this.userService.setPresentationUser(null);
+    this.closed.emit();
   }
 }
