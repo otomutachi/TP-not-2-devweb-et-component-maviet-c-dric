@@ -4,7 +4,6 @@ import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-statistics',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './statistics.html',
   styleUrl: './statistics.css'

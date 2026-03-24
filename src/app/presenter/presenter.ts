@@ -4,7 +4,6 @@ import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-presenter',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './presenter.html',
   styleUrl: './presenter.css'
